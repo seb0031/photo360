@@ -1,0 +1,73 @@
+{
+  "options": {
+    "demo": true,
+    "demoPanorama": "https://photo-sphere-viewer.js.org/assets/sphere.jpg",
+    "theme": "#2b6cb0",
+    "motDePasseAdmin": "admin"
+  },
+  "bien": {
+    "titre": "Appartement T2 lumineux",
+    "sousTitre": "Visite virtuelle 360° — disponible à la location",
+    "type": "Appartement",
+    "surface": 45,
+    "pieces": 2,
+    "chambres": 1,
+    "etage": "3e étage",
+    "loyer": 750,
+    "charges": 50,
+    "dpe": "C",
+    "ville": "Paris 11e",
+    "disponibilite": "Immédiatement",
+    "description": "Bel appartement lumineux et calme, idéalement situé. Cuisine entièrement équipée, salle de bain rénovée, proche des transports et des commerces. Idéal pour un couple ou une personne seule.",
+    "atouts": [
+      "Cuisine équipée",
+      "Proche métro / transports",
+      "Lumineux, double exposition",
+      "Calme",
+      "Chauffage individuel",
+      "Fibre optique"
+    ],
+    "contact": {
+      "nom": "Sébastien",
+      "email": "votre.email@exemple.com",
+      "tel": "06 00 00 00 00"
+    }
+  },
+  "pieces": [
+    {
+      "id": "salon",
+      "nom": "Salon",
+      "photo": "photos/salon.jpg",
+      "vueInitiale": { "yaw": 0, "pitch": 0 },
+      "liens": [
+        { "vers": "cuisine", "yaw": 100, "pitch": -12 },
+        { "vers": "chambre", "yaw": 260, "pitch": -12 }
+      ],
+      "infos": [
+        { "yaw": 35, "pitch": 0, "titre": "Double vitrage", "texte": "Fenêtres récentes, isolation phonique." }
+      ]
+    },
+    {
+      "id": "cuisine",
+      "nom": "Cuisine",
+      "photo": "photos/cuisine.jpg",
+      "vueInitiale": { "yaw": 0, "pitch": 0 },
+      "liens": [
+        { "vers": "salon", "yaw": 280, "pitch": -12 }
+      ],
+      "infos": [
+        { "yaw": 90, "pitch": -10, "titre": "Cuisine équipée", "texte": "Four, plaques, réfrigérateur et lave-vaisselle inclus." }
+      ]
+    },
+    {
+      "id": "chambre",
+      "nom": "Chambre",
+      "photo": "photos/chambre.jpg",
+      "vueInitiale": { "yaw": 0, "pitch": 0 },
+      "liens": [
+        { "vers": "salon", "yaw": 80, "pitch": -12 }
+      ],
+      "infos": []
+    }
+  ]
+}

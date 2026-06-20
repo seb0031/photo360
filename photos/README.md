@@ -1,39 +1,11 @@
-# Vos photos 360°
+# Dossier des photos 360°
 
-Placez ici les photos prises avec votre caméra 360°.
+Les photos de chaque pièce arrivent ici automatiquement quand vous publiez
+depuis l'**espace administration** (`admin.html` → onglet « Publier » → pack `.zip`).
 
-## Format attendu
-- **Format équirectangulaire** (ratio 2:1, ex. 5760 × 2880 px). C'est le format
-  par défaut exporté par la quasi-totalité des caméras 360 (Insta360, Ricoh
-  Theta, GoPro Max, etc.).
-- Extension **`.jpg`** de préférence (plus léger que le PNG).
-- Astuce : compressez vos images (par ex. avec [squoosh.app](https://squoosh.app))
-  pour un chargement rapide, surtout sur mobile.
+Vous pouvez aussi y déposer vos photos à la main : format **équirectangulaire
+`.jpg`** (ratio 2:1, ex. 5760 × 2880 px), nommées d'après l'identifiant de la
+pièce (ex. `salon.jpg`, `cuisine.jpg`).
 
-## Nommage
-Nommez chaque fichier d'après la pièce, par exemple :
-
-```
-photos/
-  salon.jpg
-  cuisine.jpg
-  chambre.jpg
-```
-
-Ces noms doivent correspondre à ceux indiqués dans
-`assets/js/tour.js` (champ `panorama`).
-
-## Activer vos photos
-Dans `assets/js/tour.js`, passez la ligne :
-
-```js
-const MODE_DEMO = true;
-```
-
-à :
-
-```js
-const MODE_DEMO = false;
-```
-
-La visite utilisera alors vos photos au lieu de l'image de démonstration.
+> Astuce : compressez vos images (ex. [squoosh.app](https://squoosh.app)) pour
+> un chargement plus rapide, surtout sur mobile.

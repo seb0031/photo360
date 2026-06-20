@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Administration — Visite virtuelle</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core@5/index.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/markers-plugin@5/index.css" />
+  <link rel="stylesheet" href="assets/css/admin.css" />
+</head>
+<body>
+
+  <!-- ====== Écran de connexion ====== -->
+  <div id="login" class="login-screen">
+    <form class="login-box" id="login-form">
+      <h1>🔒 Espace administration</h1>
+      <p>Saisissez le mot de passe pour gérer votre visite virtuelle.</p>
+      <input type="password" id="login-pass" placeholder="Mot de passe" autocomplete="current-password" />
+      <button type="submit" class="btn btn-primary">Entrer</button>
+      <p class="login-err" id="login-err"></p>
+      <p class="login-hint">Mot de passe par défaut : <code>admin</code> (modifiable dans l'onglet Apparence).</p>
+    </form>
+  </div>
+
+  <!-- ====== Application admin ====== -->
+  <div id="app" class="app hidden">
+    <aside class="sidebar">
+      <div class="brand">🏠 Admin visite</div>
+      <nav class="tabs">
+        <button class="tab actif" data-tab="bien">Le bien</button>
+        <button class="tab" data-tab="pieces">Pièces &amp; photos</button>
+        <button class="tab" data-tab="apparence">Apparence</button>
+        <button class="tab" data-tab="publier">Publier</button>
+      </nav>
+      <div class="sidebar-foot">
+        <a href="index.html" target="_blank">↗ Voir le site</a>
+        <button id="btn-reset" class="lien-danger">Réinitialiser</button>
+      </div>
+    </aside>
+
+    <main class="content">
+      <div class="save-bar" id="save-bar">Modifications enregistrées automatiquement dans ce navigateur ✓</div>
+
+      <!-- Onglet : Le bien -->
+      <section class="panel actif" data-panel="bien">
+        <h2>Informations du logement</h2>
+        <div class="form-grid" id="form-bien">
+          <label>Titre de l'annonce<input data-champ="titre" type="text" /></label>
+          <label>Sous-titre<input data-champ="sousTitre" type="text" /></label>
+          <label>Type de bien<input data-champ="type" type="text" placeholder="Appartement, Maison…" /></label>
+          <label>Ville / secteur<input data-champ="ville" type="text" /></label>
+          <label>Surface (m²)<input data-champ="surface" type="number" /></label>
+          <label>Nombre de pièces<input data-champ="pieces" type="number" /></label>
+          <label>Chambres<input data-champ="chambres" type="number" /></label>
+          <label>Étage<input data-champ="etage" type="text" /></label>
+          <label>Loyer (€)<input data-champ="loyer" type="number" /></label>
+          <label>Charges (€)<input data-champ="charges" type="number" /></label>
+          <label>DPE<input data-champ="dpe" type="text" placeholder="A à G" /></label>
+          <label>Disponibilité<input data-champ="disponibilite" type="text" /></label>
+          <label class="col-2">Description<textarea data-champ="description" rows="4"></textarea></label>
+          <label class="col-2">Atouts (un par ligne)<textarea data-champ="atouts" rows="5"></textarea></label>
+        </div>
+        <h3>Contact</h3>
+        <div class="form-grid">
+          <label>Nom<input data-contact="nom" type="text" /></label>
+          <label>Email<input data-contact="email" type="email" /></label>
+          <label>Téléphone<input data-contact="tel" type="text" /></label>
+        </div>
+      </section>
+
+      <!-- Onglet : Pièces & photos -->
+      <section class="panel" data-panel="pieces">
+        <div class="pieces-layout">
+          <div class="pieces-col">
+            <div class="pieces-head">
+              <h2>Pièces</h2>
+              <button id="btn-add-piece" class="btn btn-primary btn-sm">＋ Ajouter une pièce</button>
+            </div>
+            <ul class="liste-pieces" id="liste-pieces"></ul>
+            <p class="aide-mini">Glissez-déposez pour réordonner. La 1ʳᵉ pièce est le point de départ de la visite.</p>
+          </div>
+
+          <div class="editeur-col" id="editeur-piece">
+            <p class="vide">← Sélectionnez une pièce pour la modifier, ou ajoutez-en une.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Onglet : Apparence -->
+      <section class="panel" data-panel="apparence">
+        <h2>Apparence &amp; sécurité</h2>
+        <div class="form-grid">
+          <label>Couleur principale<input data-option="theme" type="color" /></label>
+          <label>Mot de passe admin<input data-option="motDePasseAdmin" type="text" /></label>
+          <label class="col-2 inline">
+            <input data-option="demo" type="checkbox" />
+            Utiliser les photos de démonstration (à décocher quand vos vraies photos sont en ligne)
+          </label>
+        </div>
+      </section>
+
+      <!-- Onglet : Publier -->
+      <section class="panel" data-panel="publier">
+        <h2>Publier votre visite</h2>
+        <p>Vos modifications sont enregistrées dans ce navigateur. Pour les mettre <strong>en ligne</strong> sur votre site, téléchargez le pack puis envoyez-le sur GitHub.</p>
+
+        <div class="publier-actions">
+          <button id="btn-zip" class="btn btn-primary">⬇ Télécharger le pack complet (.zip)</button>
+          <button id="btn-json" class="btn btn-light">⬇ Télécharger tour.json seul</button>
+        </div>
+        <p class="aide-mini" id="zip-info"></p>
+
+        <ol class="etapes">
+          <li>Décompressez le fichier <code>.zip</code> téléchargé.</li>
+          <li>Copiez son contenu (<code>tour.json</code> + dossier <code>photos/</code>) dans votre dossier <code>photo360</code>, en remplaçant les fichiers existants.</li>
+          <li>Dans Git Bash, depuis le dossier <code>photo360</code>, lancez :
+            <pre>git add -A
+git commit -m "Mise a jour de la visite"
+git push origin main</pre>
+          </li>
+          <li>Patientez ~1 min : votre site est à jour sur <code>https://seb0031.github.io/photo360/</code></li>
+        </ol>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+        "@photo-sphere-viewer/core": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core@5/index.module.js",
+        "@photo-sphere-viewer/markers-plugin": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/markers-plugin@5/index.module.js"
+      }
+    }
+  </script>
+  <script type="module" src="assets/js/admin.js"></script>
+</body>
+</html>

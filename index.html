@@ -3,65 +3,122 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Visite virtuelle — Mon logement à louer</title>
-  <meta name="description" content="Visite virtuelle 360° du logement à louer. Faites le tour de chaque pièce depuis chez vous." />
+  <title>Visite virtuelle 360° — Logement à louer</title>
+  <meta name="description" content="Découvrez ce logement à louer en visite virtuelle 360°. Faites le tour de chaque pièce depuis chez vous." />
 
-  <!-- Styles de la visite 360 (Photo Sphere Viewer) -->
+  <!-- Aperçu lors d'un partage (WhatsApp, réseaux, annonces) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Visite virtuelle 360° — Logement à louer" />
+  <meta property="og:description" content="Faites le tour du logement en 360°, pièce par pièce." />
+  <meta property="og:image" content="photos/cover.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core@5/index.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/markers-plugin@5/index.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/virtual-tour-plugin@5/index.css" />
-
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
 
-  <!-- ====== En-tête / présentation ====== -->
-  <header class="hero">
-    <div class="hero-content">
-      <h1 id="titre-logement">Maison à louer</h1>
-      <p id="accroche-logement">Visite virtuelle 360° — faites le tour comme si vous y étiez.</p>
-      <a href="#visite" class="btn">Commencer la visite ▾</a>
+  <!-- ====== Barre de navigation ====== -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#top" class="nav-logo" data-bien="titre">Logement à louer</a>
+      <nav class="nav-links">
+        <a href="#visite">Visite 360°</a>
+        <a href="#details">Le logement</a>
+        <a href="#contact" class="nav-cta">Demander une visite</a>
+      </nav>
     </div>
   </header>
 
-  <!-- ====== La visite virtuelle 360 ====== -->
-  <section id="visite" class="section-visite">
-    <h2>Visite virtuelle</h2>
-    <p class="aide">Cliquez et glissez pour regarder autour de vous. Cliquez sur les flèches pour changer de pièce.</p>
-    <div id="visionneuse"></div>
+  <!-- ====== Hero ====== -->
+  <section class="hero" id="top">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-badge" data-bien="disponibilite-badge">Disponible</span>
+      <h1 data-bien="titre">Bel appartement à louer</h1>
+      <p class="hero-sub" data-bien="sousTitre">Visite virtuelle 360°</p>
+      <ul class="hero-facts">
+        <li><strong data-bien="surface">—</strong><span>Surface</span></li>
+        <li><strong data-bien="pieces">—</strong><span>Pièces</span></li>
+        <li><strong data-bien="loyerCC">—</strong><span>Loyer C.C.</span></li>
+        <li><strong data-bien="ville">—</strong><span>Localisation</span></li>
+      </ul>
+      <a href="#visite" class="btn btn-light">Commencer la visite 360° ▾</a>
+    </div>
   </section>
 
-  <!-- ====== Informations sur le logement ====== -->
-  <section id="infos" class="section-infos">
-    <h2>Le logement en détail</h2>
-    <div class="grille-infos">
-      <div class="carte-info"><span class="valeur" id="info-surface">33 m²</span><span class="label">Surface</span></div>
-      <div class="carte-info"><span class="valeur" id="info-pieces">2 pièces</span><span class="label">Pièces</span></div>
-      <div class="carte-info"><span class="valeur" id="info-etage">0 étage</span><span class="label">Étage</span></div>
-      <div class="carte-info"><span class="valeur" id="info-loyer">750 € / mois</span><span class="label">Loyer (CC)</span></div>
+  <!-- ====== Visite virtuelle ====== -->
+  <section id="visite" class="section section-visite">
+    <div class="section-head">
+      <h2>Visite virtuelle 360°</h2>
+      <p>Cliquez et glissez pour regarder autour de vous. Suivez les flèches au sol pour changer de pièce.</p>
     </div>
-    <p class="description" id="info-description">
-      Maison au calme, idéalement situé. Cuisine équipée, salle de d'eau, vu mer
-      rénovée, proche des transports et commerces. Disponible immédiatement.
-      Modifiez ce texte dans <code>index.html</code> pour décrire votre logement.
-    </p>
+    <div class="viewer-wrap">
+      <div id="visionneuse"></div>
+      <div class="room-selector" id="room-selector"><!-- boutons des pièces injectés ici --></div>
+    </div>
+  </section>
+
+  <!-- ====== Détails du logement ====== -->
+  <section id="details" class="section">
+    <div class="section-head">
+      <h2>Le logement en détail</h2>
+    </div>
+
+    <div class="details-grid">
+      <div class="carte-fait"><span class="fait-val" data-bien="type">—</span><span class="fait-lib">Type</span></div>
+      <div class="carte-fait"><span class="fait-val" data-bien="surface">—</span><span class="fait-lib">Surface</span></div>
+      <div class="carte-fait"><span class="fait-val" data-bien="pieces">—</span><span class="fait-lib">Pièces</span></div>
+      <div class="carte-fait"><span class="fait-val" data-bien="chambres">—</span><span class="fait-lib">Chambre(s)</span></div>
+      <div class="carte-fait"><span class="fait-val" data-bien="etage">—</span><span class="fait-lib">Étage</span></div>
+      <div class="carte-fait"><span class="fait-val" data-bien="disponibilite">—</span><span class="fait-lib">Disponibilité</span></div>
+      <div class="carte-fait"><span class="fait-val badge-dpe" data-bien="dpe">—</span><span class="fait-lib">DPE</span></div>
+      <div class="carte-fait carte-loyer">
+        <span class="fait-val" data-bien="loyer">—</span><span class="fait-lib">Loyer + <span data-bien="charges">—</span> de charges</span>
+      </div>
+    </div>
+
+    <p class="description" data-bien="description"></p>
+
+    <h3 class="sous-titre">Les atouts</h3>
+    <ul class="atouts" id="atouts"><!-- atouts injectés ici --></ul>
   </section>
 
   <!-- ====== Contact ====== -->
-  <section id="contact" class="section-contact">
-    <h2>Intéressé ? Contactez-moi</h2>
-    <p>Pour une visite physique ou plus d'informations :</p>
-    <p class="coord">
-      <a id="lien-email" href="mailto:sebastien.medal@gmail.com">sebastien.medal@gmail.com</a><br />
-      <a id="lien-tel" href="tel:+262693498008">06 93 49 80 08</a>
-    </p>
+  <section id="contact" class="section section-contact">
+    <div class="section-head">
+      <h2>Ce logement vous intéresse ?</h2>
+      <p>Envoyez-moi un message pour organiser une visite ou poser vos questions.</p>
+    </div>
+
+    <div class="contact-grid">
+      <form class="contact-form" id="contact-form">
+        <label>Votre nom<input type="text" name="nom" required /></label>
+        <label>Votre email<input type="email" name="email" required /></label>
+        <label>Votre message<textarea name="message" rows="4" required>Bonjour, je suis intéressé(e) par ce logement. Serait-il possible de convenir d'une visite ?</textarea></label>
+        <button type="submit" class="btn btn-primary">Envoyer ma demande</button>
+        <p class="form-note">Votre messagerie s'ouvrira avec le message pré-rempli.</p>
+      </form>
+
+      <div class="contact-direct">
+        <h3>Contact direct</h3>
+        <p class="contact-nom" data-bien="contact-nom">—</p>
+        <p><a id="lien-email" data-bien="contact-email" href="#">—</a></p>
+        <p><a id="lien-tel" data-bien="contact-tel" href="#">—</a></p>
+      </div>
+    </div>
   </section>
 
-  <footer>
+  <footer class="footer">
     <p>Visite virtuelle réalisée avec une caméra 360°.</p>
+    <p class="footer-admin"><a href="admin.html">Espace administration</a></p>
   </footer>
 
-  <!-- Photo Sphere Viewer (chargé en modules ES) -->
   <script type="importmap">
     {
       "imports": {
@@ -72,6 +129,6 @@
       }
     }
   </script>
-  <script type="module" src="assets/js/tour.js"></script>
+  <script type="module" src="assets/js/site.js"></script>
 </body>
 </html>
