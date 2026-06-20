@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visite virtuelle — Mon logement à louer</title>
+  <meta name="description" content="Visite virtuelle 360° du logement à louer. Faites le tour de chaque pièce depuis chez vous." />
+
+  <!-- Styles de la visite 360 (Photo Sphere Viewer) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core@5/index.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/markers-plugin@5/index.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/virtual-tour-plugin@5/index.css" />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- ====== En-tête / présentation ====== -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1 id="titre-logement">Bel appartement à louer</h1>
+      <p id="accroche-logement">Visite virtuelle 360° — faites le tour comme si vous y étiez.</p>
+      <a href="#visite" class="btn">Commencer la visite ▾</a>
+    </div>
+  </header>
+
+  <!-- ====== La visite virtuelle 360 ====== -->
+  <section id="visite" class="section-visite">
+    <h2>Visite virtuelle</h2>
+    <p class="aide">Cliquez et glissez pour regarder autour de vous. Cliquez sur les flèches pour changer de pièce.</p>
+    <div id="visionneuse"></div>
+  </section>
+
+  <!-- ====== Informations sur le logement ====== -->
+  <section id="infos" class="section-infos">
+    <h2>Le logement en détail</h2>
+    <div class="grille-infos">
+      <div class="carte-info"><span class="valeur" id="info-surface">45 m²</span><span class="label">Surface</span></div>
+      <div class="carte-info"><span class="valeur" id="info-pieces">2 pièces</span><span class="label">Pièces</span></div>
+      <div class="carte-info"><span class="valeur" id="info-etage">3ᵉ étage</span><span class="label">Étage</span></div>
+      <div class="carte-info"><span class="valeur" id="info-loyer">750 € / mois</span><span class="label">Loyer (CC)</span></div>
+    </div>
+    <p class="description" id="info-description">
+      Appartement lumineux et calme, idéalement situé. Cuisine équipée, salle de bain
+      rénovée, proche des transports et commerces. Disponible immédiatement.
+      Modifiez ce texte dans <code>index.html</code> pour décrire votre logement.
+    </p>
+  </section>
+
+  <!-- ====== Contact ====== -->
+  <section id="contact" class="section-contact">
+    <h2>Intéressé ? Contactez-moi</h2>
+    <p>Pour une visite physique ou plus d'informations :</p>
+    <p class="coord">
+      <a id="lien-email" href="mailto:votre.email@exemple.com">votre.email@exemple.com</a><br />
+      <a id="lien-tel" href="tel:+33600000000">06 00 00 00 00</a>
+    </p>
+  </section>
+
+  <footer>
+    <p>Visite virtuelle réalisée avec une caméra 360°.</p>
+  </footer>
+
+  <!-- Photo Sphere Viewer (chargé en modules ES) -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+        "@photo-sphere-viewer/core": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core@5/index.module.js",
+        "@photo-sphere-viewer/markers-plugin": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/markers-plugin@5/index.module.js",
+        "@photo-sphere-viewer/virtual-tour-plugin": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/virtual-tour-plugin@5/index.module.js"
+      }
+    }
+  </script>
+  <script type="module" src="assets/js/tour.js"></script>
+</body>
+</html>
